@@ -1,3 +1,28 @@
-const ProductDetail = () => <div>Products Detail Page</div>
+import { useQuery } from "react-query"
+import { useParams } from "react-router-dom"
+import ProductDetail from "../../components/product/detail"
+import { fetcher, QueryKeys } from "../../queryClient"
+import { Product } from "../../types"
 
-export default ProductDetail
+const ProductDetailPage = () => {
+    const { id } = useParams()
+
+    const { data } = useQuery<Product>([QueryKeys.PRODUCTS, id],
+        () => fetcher({
+            method: 'GET',
+            path: `/products/${id}`,
+        }),
+    )
+    
+    if(!data) return null
+
+
+    return (
+        <>
+            <h2>Product Detail</h2>
+            <ProductDetail item={data} />
+        </>
+
+    )
+}
+export default ProductDetailPage
