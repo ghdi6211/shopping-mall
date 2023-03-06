@@ -8,6 +8,7 @@ const Gnb = () => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/products">Item List</Link></li>
                 <li><Link to="/cart">Cart</Link></li>
+                <li><Link to="/users">users</Link></li>
             </ul>
         </nav>
     )
