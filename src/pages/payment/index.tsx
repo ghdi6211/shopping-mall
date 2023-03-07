@@ -1,8 +1,12 @@
-const PayPage = () => {
+import Payment from "../../components/payment"
+
+const PaymentPage = () => {
 
     return (
-        <div>PayPage</div>
+        <>
+        <Payment/>
+        </>
     )
 }
 
-export default PayPage
+export default PaymentPage
