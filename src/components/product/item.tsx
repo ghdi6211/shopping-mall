@@ -4,7 +4,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ADD_CART } from "../../graphql/cart";
 import { Product } from "../../graphql/products";
 import { graphqlFetcher, PQueryKeys } from "../../queryClient";
-import { cartItemSelector } from "../../recoils/cart";
 
 const ProductItem = ({ id, imageUrl, price, title, description, createdAt}: Product) => {
 const { mutate: addCart } = useMutation((id: string) => graphqlFetcher(ADD_CART, {id}))
