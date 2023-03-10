@@ -1,3 +1,4 @@
+import React from "react"
 import { useState } from "react"
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router"
@@ -8,11 +9,7 @@ import { checkedCartState } from "../../recoil/cart"
 import WillPay from "../willPay"
 import PaymentModal from "./modal"
 
-type PayInfo = {
-    id: string;
-    amount: number;
-}
-type PaymentInfos = PayInfo[];
+type PaymentInfos = string[];
 
 const Payment = () => {
     const navigate = useNavigate()
@@ -27,9 +24,10 @@ const Payment = () => {
 
     const proceed = () => {
         //결제진행
-        const payInfos = checkedCartDate.map(({ id, amount}) => ({id, amount}))
+        const payInfos = checkedCartDate.map(({ id }) => (id))
         executePay(payInfos)
         setCheckedCartDate([])
+        alert('Complete Payment!! Thank you.')
         navigate('/products', {replace: true})
     }
 

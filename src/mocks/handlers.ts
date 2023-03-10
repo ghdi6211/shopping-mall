@@ -9,7 +9,7 @@ import { PQueryKeys } from '../queryClient'
 const mock_products = (() =>
     Array.from({ length: 20 }).map((_, i) => ({
         id: i + 1 + '',
-        imageUrl: `https://placeimg.com/200/200/${i + 1}`,
+        imageUrl: `https://picsum.photos/id/${i + 17}/200/150`,
         price: 5000,
         title: `임시상품${i + 1}`,
         description: `임시상세내용${i + 1}`,
@@ -77,9 +77,10 @@ export const handlers = [
         return res(ctx.data(id))
     }),
 
-    graphql.mutation(EXECUTE_PAY, ({variables}, res, ctx) => {
-        console.log(variables)
-
-        return res()
+    graphql.mutation(EXECUTE_PAY, ({variables: ids}, res, ctx) => {
+        ids.forEach((id: string) => {
+            delete cartData[id]
+        })
+        return res(ctx.data(ids))
     }),
 ]

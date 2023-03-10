@@ -1,3 +1,4 @@
+import React from "react"
 import { ReactChild } from "react"
 import { createPortal } from "react-dom"
 
@@ -10,11 +11,13 @@ const PaymentModal = ({ show, proceed, cancel }: { show: boolean, proceed: () =>
     return (
         show ? (
             <ModalPortal>
-                <div>
-                    <p>Do you want Payment?</p>
-                    <div>
-                        <button onClick={proceed}>Yes</button>
-                        <button onClick={cancel}>No</button>
+                <div className={`modal ${show ? 'show' : ''}`}>
+                    <div className="modal__inner">
+                        <p>Do you want Payment?</p>
+                        <div>
+                            <button onClick={proceed}>Yes</button>
+                            <button onClick={cancel}>No</button>
+                        </div>
                     </div>
                 </div>
             </ModalPortal>
